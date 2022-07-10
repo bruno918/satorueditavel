@@ -1,19 +1,4 @@
-/*a
-EM CASO DE DUVIDAS, ENTRE EM CONTATO COMIGO
-WA.ME/5555933005901
 
-QUER ADQUIRIR O ARQUIVO DESCRIPTOGRAFADO?
-PREÇO 35 REAIS
-
-
- Creditos: 
- XEON : https://github.com/DGXeon/CheemsBot-MD2
- DikaArdnt: https://github.com/DikaArdnt
- https://github.com/MhankBarBar
- Agradecimentos ao Breno/Sayo! Sem ele eu provavelmente já teria desistido dos bots...
- 
- acesse https://ayumi-apis.herokuapp.com
- */
 require('./settings')
 const { default: gojoConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
 const { state, saveState } = useSingleFileAuthState(`./gojo.json`)
@@ -126,63 +111,7 @@ async function startgojo() {
      }
     })
 
-    gojo.ev.on('group-participants.update', async (anu) => {
-      
-        
-    
-
-
-        try {
-            let metadata = await gojo.groupMetadata(anu.id)
-            let participants = anu.participants
-            for (let num of participants) {
-                // Get Profile Picture User
-                try {
-                    ppuser = await gojo.profilePictureUrl(num, 'image')
-                } catch {
-                    ppuser = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-                }
-
-                //Get Profile Picture Group\\
-                try {
-                    ppgroup = await gojo.profilePictureUrl(anu.id, 'image')
-                } catch {
-                    ppgroup = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-                }
-
-//welcome\\
-        let nama = await gojo.getName(num)
-memb = metadata.participants.length
-
-
-Kon = await getBuffer(`http://ayumi-apis.herokuapp.com/api/welcome?name=${encodeURIComponent(nama)}&picurl=${encodeURIComponent(ppuser)}&bgurl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVEEZdc1_FnX3xFtue5fe_BJG4xbZompn4ZsMjvMo2mfDZMCYC-H_Qwdkc&s=10&mem=${encodeURIComponent(memb)}&gcname=${encodeURIComponent(metadata.subject)}&apikey=edbotv3`)
-Tol = await getBuffer(`https://ayumi-apis.herokuapp.com/api/goodbye?name=${encodeURIComponent(nama)}&picurl=${encodeURIComponent(ppuser)}&bgurl=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVEEZdc1_FnX3xFtue5fe_BJG4xbZompn4ZsMjvMo2mfDZMCYC-H_Qwdkc&s=10&mem=${encodeURIComponent(memb)}&gcname=${encodeURIComponent(metadata.subject)}&apikey=edbotv3`)
-
-num = anu.participants[0]
-     if ( _fake.includes(anu.id) && !num.split('@')[0].startsWith(55)) return  gojo.groupParticipantsUpdate(anu.id, [anu.participants[0]], 'remove')
-    console.log("antifake ativado!! removendo número gringo.")
-    if ( anu.action === 'add') {
-        console.log(anu)
-                    gojo.sendMessage(anu.id, { image: Kon, contextInfo: { mentionedJid: [num] }, caption: `
-👋✑ Olá @${num.split("@")[0]}!!
-📞✑ Bem vindo a ${metadata.subject}
-
-📜✑ Descrição do Grupo: ${metadata.desc}
-
-🤠✑ Bem-vindo ao nosso grupo, se veio apenas divulgar então vai para a pqp!!`} )
-
-
-                } else if (anu.action == 'remove') {
-                    gojo.sendMessage(anu.id, { image: Tol, contextInfo: { mentionedJid: [num] }, caption: `👋 ✑ @${num.split("@")[0]} saiu de: ${metadata.subject}
-
-🤝 ✑ Menos um corno 🐂😂 `})
-                }
-            }
-        } catch (err) {
-            console.log(err)
-        }
-    })
-	
+   
     //Setting\\
     gojo.decodeJid = (jid) => {
         if (!jid) return jid
